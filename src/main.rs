@@ -2,9 +2,15 @@ use colored::*;
 use std::io;
 
 fn main() {
-    println!("\nWelcome to PERRITABONITA!");
-    println!("\nA Rust Program inspired by our crazy dog :)");
-    println!("\n-------------------------------------------");
+    let title = String::from("\n  Welcome to PERRITABONITA!  ");
+    let subtitle = String::from("\n  A Rust Program made with love ❤️  ");
+    let dedication = String::from("\n  Inspired by our crazy dog :)  ");
+    let line = "\n-------------------------------------------------".bright_yellow();
+
+    println!("{}", title.red().on_bright_yellow());
+    println!("{}", subtitle.red().on_bright_white());
+    println!("{}", dedication.blue().on_bright_white());
+    println!("{}", line);
     println!("\nWrite something you want Perritabonita to say:\n");
 
     let picture = String::from(
@@ -37,12 +43,17 @@ fn main() {
 
     let mut quote = String::new();
 
+    let ending = "!".to_string();
+
     io::stdin().read_line(&mut quote).expect("What????");
 
-    let message = String::from("\nPerritabonita says:\n\n");
+    let new_quote = format!("{}{}", quote.to_uppercase().trim(), ending.trim());
 
-    println!("{}", picture);
-    println!("{}", message.to_uppercase().red().on_bright_yellow());
+    println!("{}", line);
 
-    println!("{}{}", quote.blue().bold().on_bright_white(), "!");
+    let message = String::from("\n  Perritabonita says:\n\n");
+
+    println!("  {}", message);
+    println!("  \"{}\"", new_quote.trim());
+    println!("\n\n{}\n\n", picture.yellow());
 }

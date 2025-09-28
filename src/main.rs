@@ -1,9 +1,17 @@
 use colored::*;
 use std::io;
+use crossterm::{
+    execute,
+    terminal::{EnterAlternateScreen, LeaveAlternateScreen, Clear, ClearType},
+    cursor::{MoveTo},
+};
 
-fn main() {
+fn main() -> std::io::Result<()> {
     // TODO: Create a loop and break this program into a few different files
     //
+
+    // Enter alternate screen and clear it
+    execute!(io::stdout(), EnterAlternateScreen, Clear(ClearType::All), MoveTo(0, 0))?;
 
     let title = String::from("\n  Welcome to PERRITABONITA!  ");
     let subtitle = String::from("\n  A Rust Program made with love ❤️  ");
@@ -63,4 +71,14 @@ fn main() {
     println!("  {}", message);
     println!("  \"{}\"", new_quote.trim());
     println!("\n\n{}\n\n", picture.yellow());
+
+    // Wait for user to press any key before exiting
+    println!("Press Enter to exit...");
+    let mut exit_input = String::new();
+    io::stdin().read_line(&mut exit_input).expect("Failed to read line");
+
+    // Restore terminal state
+    execute!(io::stdout(), LeaveAlternateScreen)?;
+
+    Ok(())
 }

@@ -6,10 +6,9 @@ use crossterm::{
 };
 use std::io;
 
-fn main() -> std::io::Result<()> {
-    // TODO: Create a loop and break this program into a few different files
-    //
+// I will fix this and build this out later - August 29, 2026
 
+fn main() -> std::io::Result<()> {
     // Enter alternate screen and clear it
     execute!(
         io::stdout(),

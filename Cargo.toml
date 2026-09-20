@@ -1,10 +1,38 @@
 [package]
 name = "perritabonita"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+description = "A virtual Golden Retriever companion for your terminal"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# The project is both a library (`src/lib.rs`) and a binary (`src/main.rs`).
+# Splitting logic into a library makes it reusable and, crucially, testable:
+# integration tests in `tests/` and doctests can call into `perritabonita::...`.
+[lib]
+name = "perritabonita"
+path = "src/lib.rs"
+
+[[bin]]
+name = "perritabonita"
+path = "src/main.rs"
 
 [dependencies]
-colored = "2.1.0"
-crossterm = "0.27"
+# Terminal output
+colored = "2.1.0"       # ergonomic ANSI colors on strings
+crossterm = "0.27"      # cross-platform terminal control (clearing, cursor, alt screen)
+
+# Command-line parsing (derive lets us describe the CLI with structs/enums)
+clap = { version = "4", features = ["derive"] }
+
+# Serialization: serde is the trait layer, the others are format backends
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"        # for Perritabonita's saved state
+toml = "0.8"            # for human-editable data files (tricks, fortunes)
+
+# Randomness for picking tricks/fortunes
+rand = "0.8"
+
+# Ergonomic custom error types
+thiserror = "1"
+
+# Cross-platform "where does config live?" lookups
+dirs = "5"

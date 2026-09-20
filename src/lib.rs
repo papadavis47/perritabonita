@@ -21,8 +21,6 @@ pub mod speech;
 pub mod state;
 pub mod theme;
 
-use std::time::Duration;
-
 use colored::Colorize;
 
 use crate::cli::{Cli, Command};
@@ -38,7 +36,7 @@ pub fn run(cli: Cli) -> Result<()> {
     let mut perritabonita = Perritabonita::load()?;
 
     // No subcommand? Just show her.
-    let command = cli.command.unwrap_or(Command::Show { animate: false });
+    let command = cli.command.unwrap_or(Command::Show);
 
     match command {
         Command::Say { words } => {
@@ -52,7 +50,7 @@ pub fn run(cli: Cli) -> Result<()> {
                 "{}",
                 "You give Perritabonita a good pet. *thump thump thump*".color(theme.accent)
             );
-            show(&perritabonita, false)?;
+            show(&perritabonita)?;
         }
         Command::Feed => {
             perritabonita.feed();
@@ -62,7 +60,7 @@ pub fn run(cli: Cli) -> Result<()> {
                 "{}",
                 "Perritabonita gobbles up the treat! *happy crunching*".color(theme.accent)
             );
-            show(&perritabonita, false)?;
+            show(&perritabonita)?;
         }
         Command::Trick => {
             trick(&perritabonita)?;
@@ -70,8 +68,8 @@ pub fn run(cli: Cli) -> Result<()> {
         Command::Fortune => {
             fortune(&perritabonita)?;
         }
-        Command::Show { animate } => {
-            show(&perritabonita, animate)?;
+        Command::Show => {
+            show(&perritabonita)?;
         }
         Command::Status => {
             status(&perritabonita);
@@ -90,15 +88,10 @@ fn say(perritabonita: &Perritabonita, text: &str) {
     println!("{}", art::portrait(mood).color(theme.art));
 }
 
-/// Show Perritabonita's portrait (optionally animated) plus her mood.
-fn show(perritabonita: &Perritabonita, animate: bool) -> Result<()> {
+/// Show Perritabonita's portrait plus her mood.
+fn show(perritabonita: &Perritabonita) -> Result<()> {
     let mood = perritabonita.mood();
     let theme = Theme::for_mood(mood);
-
-    if animate {
-        // A handful of wag cycles, then settle on the static portrait.
-        art::animate(&art::wag_frames(), 6, Duration::from_millis(250))?;
-    }
 
     println!("{}", art::portrait(mood).color(theme.art));
     println!(

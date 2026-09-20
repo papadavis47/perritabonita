@@ -34,7 +34,7 @@ impl Mood {
     pub fn greeting(self) -> &'static str {
         match self {
             Mood::Happy => "Woof! *tail wags*",
-            Mood::Excited => "WOOFWOOFWOOF!! *zoomies*",
+            Mood::Excited => "WOOFWOOFWOOF!!",
             Mood::Sleepy => "*yawwwn* ...woof?",
             Mood::Hungry => "Woof! *stares at the treat jar*",
         }

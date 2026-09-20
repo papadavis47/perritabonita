@@ -25,7 +25,7 @@ It is structured as a **library + thin binary**:
 | `src/state.rs`         | Persistent stats via `serde_json` + filesystem           |
 | `src/data.rs`          | Load tricks/fortunes from bundled TOML                   |
 | `src/speech.rs`        | `barkify()`, speech bubbles, generic `pick()`            |
-| `src/art.rs`           | ASCII art (`include_str!`) + `crossterm` animation       |
+| `src/art.rs`           | ASCII art (`include_str!`)                                |
 | `src/theme.rs`         | Mood → colors                                            |
 | `src/error.rs`         | Single crate-wide `PerritabonitaError` + `Result<T>` alias        |
 | `assets/`              | ASCII art `.txt` files + `tricks.toml` / `fortunes.toml` |
@@ -43,7 +43,7 @@ cargo fmt --check      # verify formatting in CI-style checks
 ```
 
 Common subcommands: `say "<text>"`, `pet`, `feed`, `trick`, `fortune`,
-`show [--animate]`, `status`.
+`show`, `status`.
 
 ## Conventions
 
@@ -76,10 +76,11 @@ Common subcommands: `say "<text>"`, `pet`, `feed`, `trick`, `fortune`,
 - Perritabonita's saved state lives at the OS config dir (e.g.
   `~/.config/perritabonita/state.json`). Deleting it resets her to defaults. Avoid
   leaving demo state behind after manual runs; reset it if you created it.
-- `show --animate` clears the screen and sleeps between frames; it is
-  interactive and not suitable for automated/piped output.
 - Art files contain Unicode braille characters — edit them as UTF-8 and do not
   "fix" the whitespace or blank-looking cells.
+- Only two portraits exist (`perritabonita_happy.txt`, `perritabonita_sleepy.txt`). `art::portrait`
+  maps every non-`Sleepy` mood to the happy pose; moods are told apart by
+  `theme.rs` colors, not separate art.
 
 ## Scope
 
@@ -102,13 +103,16 @@ Roughly easy → hard:
    `assets/fortunes.toml`. No Rust changes needed.
 2. **A new mood** — add a `Mood` variant (e.g. `Playful`). Let the compiler's
    exhaustiveness checks guide every `match` that must be updated
-   (`dog.rs`, `art.rs`, `theme.rs`); add a matching `assets/art/*.txt`.
+   (`dog.rs`, `art.rs`, `theme.rs`). Map it to an existing portrait in
+   `art::portrait` (or add a new `assets/art/*.txt` if it deserves its own).
 3. **Time decay** — store a "last interacted" timestamp in `Stats` and make
    hunger/energy drift over time (`SystemTime`, or the `time`/`chrono` crate).
 4. **Config file** — let users rename Perritabonita or pick a favorite color via a TOML
    config loaded at startup.
 5. **`perritabonita play` mini-game** — a guessing/fetch game using `rand` and a loop.
-6. **Richer animation** — more frames or a blinking idle animation in `art.rs`.
+6. **Animation** — Perritabonita used to have a `show --animate` tail-wag animation
+   (`crossterm`); it was removed for lack of good small-scale art. Re-add it
+   with new frame art if you want the exercise.
 7. **CLI polish** — shell completions via `clap_complete`.
 8. **Errors with context** — try `anyhow` in the binary layer and compare the
    ergonomics against the current `thiserror` setup.

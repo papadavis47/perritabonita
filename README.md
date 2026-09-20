@@ -4,7 +4,7 @@ A virtual Golden Retriever companion for your terminal — and a hands-on Rust
 learning project. Inspired by our beautiful, crazy dog. ❤️
 
 Perritabonita has **moods**, remembers you between runs (a tiny Tamagotchi), does
-**tricks**, shares **dog wisdom**, and can **wag her tail** in animated ASCII.
+**tricks**, and shares **dog wisdom**.
 
 ## Quick start
 
@@ -20,7 +20,6 @@ cargo run -- <command>
 | `perritabonita feed`                    | Give her a treat — lowers hunger                   |
 | `perritabonita trick`                   | Perform a random trick (from `assets/tricks.toml`) |
 | `perritabonita fortune`                 | Share a random piece of dog wisdom                 |
-| `perritabonita show --animate`          | Animated tail wag, then settle into a portrait     |
 | `perritabonita status`                  | Show her stats and mood with little meters         |
 
 Her memory lives at `~/.config/perritabonita/state.json` (path varies by OS). Delete that
@@ -41,11 +40,11 @@ src/
 ├── state.rs   # persistent stats (serde_json + filesystem)
 ├── data.rs    # load tricks/fortunes from TOML (serde)
 ├── speech.rs  # barkify(), speech bubbles, random picker
-├── art.rs     # ASCII art loading + animation (crossterm)
+├── art.rs     # ASCII art loading (include_str!)
 ├── theme.rs   # mood -> colors
 └── error.rs   # one custom error type for the whole crate
 assets/
-├── art/*.txt  # ASCII portraits + animation frames
+├── art/*.txt  # ASCII portraits
 ├── tricks.toml
 └── fortunes.toml
 tests/
@@ -84,14 +83,17 @@ Ideas to keep learning, roughly easy → hard:
 
 1. **More content**: add tricks/fortunes to the TOML files. (No Rust needed.)
 2. **A new mood**: add `Mood::Playful`. The compiler will walk you through every
-   `match` you must update — a great tour of exhaustiveness.
+   `match` you must update — a great tour of exhaustiveness. Map it to an
+   existing portrait in `art::portrait`, or add a new `assets/art/*.txt`.
 3. **Time decay**: store a "last interacted" timestamp in `Stats`; make Perritabonita get
    hungrier/sleepier the longer since you last visited (learn `SystemTime`, and
    the `chrono` or `time` crate).
 4. **Config file**: let users rename Perritabonita or pick a favorite color via a TOML
    config loaded at startup.
 5. **`perritabonita play` mini-game**: a guessing or fetch game using `rand` and a loop.
-6. **Richer animation**: add more frames or a blinking idle animation.
+6. **Animation**: a `show --animate` tail-wag animation (`crossterm`) used to
+   exist and was removed for lack of good small-scale art. Re-add it with new
+   frame art if you want the exercise.
 7. **CLI polish**: add shell completions with `clap_complete`.
 8. **Errors with context**: swap `thiserror` for `anyhow` in the binary layer and
    compare the ergonomics.

@@ -35,11 +35,7 @@ pub enum Command {
     /// Receive a piece of dog wisdom.
     Fortune,
     /// Show Perritabonita in her current mood.
-    Show {
-        /// Animate her wagging tail instead of a static portrait.
-        #[arg(long)]
-        animate: bool,
-    },
+    Show,
     /// Print Perritabonita's current stats and mood.
     Status,
 }

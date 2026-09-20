@@ -38,6 +38,9 @@ pub fn run(cli: Cli) -> Result<()> {
     // No subcommand? Just show her.
     let command = cli.command.unwrap_or(Command::Show);
 
+    // Breathing room between the shell prompt and Perritabonita's output.
+    println!();
+
     match command {
         Command::Say { words } => {
             say(&perritabonita, &words.join(" "));
@@ -50,6 +53,7 @@ pub fn run(cli: Cli) -> Result<()> {
                 "{}",
                 "You give Perritabonita a good pet. *thump thump thump*".color(theme.accent)
             );
+            println!();
             show(&perritabonita)?;
         }
         Command::Feed => {
@@ -60,6 +64,7 @@ pub fn run(cli: Cli) -> Result<()> {
                 "{}",
                 "Perritabonita gobbles up the treat! *happy crunching*".color(theme.accent)
             );
+            println!();
             show(&perritabonita)?;
         }
         Command::Trick => {
@@ -85,6 +90,7 @@ fn say(perritabonita: &Perritabonita, text: &str) {
     let theme = Theme::for_mood(mood);
     let spoken = speech::barkify(text);
     print!("{}", speech::bubble(&spoken).color(theme.accent));
+    println!();
     println!("{}", art::portrait(mood).color(theme.art));
 }
 
@@ -110,6 +116,7 @@ fn trick(perritabonita: &Perritabonita) -> Result<()> {
         Some(t) => println!("{}", format!("Perritabonita {t}.").color(theme.accent)),
         None => println!("Perritabonita doesn't know any tricks yet!"),
     }
+    println!();
     println!("{}", art::portrait(perritabonita.mood()).color(theme.art));
     Ok(())
 }
@@ -122,6 +129,7 @@ fn fortune(perritabonita: &Perritabonita) -> Result<()> {
         Some(f) => println!("{}", format!("\u{1F4AD} {f}").color(theme.accent)),
         None => println!("Perritabonita is out of wisdom for now."),
     }
+    println!();
     println!("{}", art::portrait(perritabonita.mood()).color(theme.art));
     Ok(())
 }

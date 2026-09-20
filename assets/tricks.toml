@@ -1,0 +1,11 @@
+# Perritabonita's repertoire of tricks. Add your own — the program picks one at random.
+tricks = [
+    "sits down and offers a paw",
+    "rolls over dramatically",
+    "plays dead... then peeks to see if you noticed",
+    "spins in a happy circle",
+    "fetches an imaginary ball and drops it at your feet",
+    "does a big downward-dog stretch",
+    "boops your hand with her nose",
+    "gives you the zoomies as a demonstration",
+]

@@ -1,9 +1,9 @@
 //! Integration tests.
 //!
 //! Unlike the `#[cfg(test)]` modules inside `src/`, these files are compiled as
-//! a separate crate that depends on `perritabonita`, so they can only touch the *public*
-//! API — exactly what a real consumer sees. This is a good way to make sure the
-//! public surface is actually usable and the modules cooperate.
+//! a separate crate that depends on `perritabonita`, so they can only touch the
+//! *public* API — exactly what a real consumer sees. This is a good way to make
+//! sure the public surface is actually usable and the modules cooperate.
 
 use perritabonita::data;
 use perritabonita::dog::{Mood, Perritabonita};
@@ -79,7 +79,10 @@ fn bundled_data_loads_and_is_pickable() {
 #[test]
 fn state_survives_a_save_load_round_trip() {
     let mut path = std::env::temp_dir();
-    path.push(format!("perritabonita_integration_{}.json", std::process::id()));
+    path.push(format!(
+        "perritabonita_integration_{}.json",
+        std::process::id()
+    ));
 
     let stats = Stats {
         times_petted: 42,

@@ -1,4 +1,4 @@
-# 🐾 Perritabonita
+# 🐾 perritabonita
 
 A virtual Golden Retriever companion for your terminal — and a hands-on Rust
 learning project. Inspired by our beautiful, crazy dog. ❤️
@@ -12,8 +12,8 @@ Perritabonita has **moods**, remembers you between runs (a tiny Tamagotchi), doe
 cargo run -- <command>
 ```
 
-| Command                        | What it does                                       |
-| ------------------------------ | -------------------------------------------------- |
+| Command                                 | What it does                                       |
+| --------------------------------------- | -------------------------------------------------- |
 | `perritabonita`                         | Show Perritabonita in her current mood (default)            |
 | `perritabonita say "who's a good girl"` | Bark your words back in a speech bubble            |
 | `perritabonita pet`                     | Pet her — raises happiness, and she remembers it   |
@@ -22,8 +22,8 @@ cargo run -- <command>
 | `perritabonita fortune`                 | Share a random piece of dog wisdom                 |
 | `perritabonita status`                  | Show her stats and mood with little meters         |
 
-Her memory lives at `~/.config/perritabonita/state.json` (path varies by OS). Delete that
-file to reset her to a fresh puppy.
+Her memory lives at `~/.config/perritabonita/state.json` (path varies by OS).
+Delete that file to reset her to a fresh puppy.
 
 ## How it's built
 
@@ -54,7 +54,7 @@ tests/
 ## Where to learn each Rust concept
 
 | Concept                                   | Look at                                                       |
-| ----------------------------------------- | ------------------------------------------------------------- |
+| --------------------------------------- | -------------------------------------------------- |
 | Library + binary split                    | `Cargo.toml`, `main.rs`, `lib.rs`                             |
 | Modules & visibility (`pub`)              | `lib.rs` module declarations                                  |
 | Structs & methods (`&self` / `&mut self`) | `dog.rs` (`Perritabonita`)                                             |

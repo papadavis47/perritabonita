@@ -3,7 +3,7 @@
 A virtual Golden Retriever companion for your terminal — and a hands-on Rust
 learning project. Inspired by our beautiful, crazy dog. ❤️
 
-Perritabonita has **moods**, remembers you between runs (a tiny Tamagotchi),
+Perrita Bonita has **moods**, remembers you between runs (a tiny Tamagotchi),
 does **tricks**, and shares **dog wisdom**.
 
 ## Quick start
@@ -14,7 +14,7 @@ cargo run -- <command>
 
 | Command                                 | What it does                                       |
 | --------------------------------------- | -------------------------------------------------- |
-| `perritabonita`                         | Show Perritabonita in her current mood (default)   |
+| `perritabonita`                         | Show Perrita Bonita in her current mood (default)  |
 | `perritabonita say "who's a good girl"` | Bark your words back in a speech bubble            |
 | `perritabonita pet`                     | Pet her — raises happiness, and she remembers it   |
 | `perritabonita feed`                    | Give her a treat — lowers hunger                   |
@@ -86,9 +86,9 @@ Ideas to keep learning, roughly easy → hard:
    `match` you must update — a great tour of exhaustiveness. Map it to an
    existing portrait in `art::portrait`, or add a new `assets/art/*.txt`.
 3. **Time decay**: store a "last interacted" timestamp in `Stats`; make
-   Perritabonita get hungrier/sleepier the longer since you last visited (learn
+   Perrita Bonita get hungrier/sleepier the longer since you last visited (learn
    `SystemTime`, and the `chrono` or `time` crate).
-4. **Config file**: let users rename Perritabonita or pick a favorite color via
+4. **Config file**: let users rename Perrita Bonita or pick a favorite color via
    a TOML config loaded at startup.
 5. **`perritabonita play` mini-game**: a guessing or fetch game using `rand` and
    a loop.

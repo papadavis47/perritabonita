@@ -1,4 +1,4 @@
-//! Turning your words into Perritabonita-speak, and drawing speech bubbles.
+//! Turning your words into Perrita Bonita-speak, and drawing speech bubbles.
 
 use rand::seq::SliceRandom;
 
@@ -39,7 +39,7 @@ pub fn bubble(text: &str) -> String {
     out.push(' ');
     out.push_str(&"-".repeat(width + 2));
     out.push('\n');
-    // The little tail connecting the bubble to Perritabonita.
+    // The little tail connecting the bubble to Perrita Bonita.
     out.push_str("   \\\n    \\\n");
     out
 }

@@ -1,4 +1,4 @@
-//! Perritabonita: a virtual Golden Retriever companion for your terminal.
+//! Perrita Bonita: a virtual Golden Retriever companion for your terminal.
 //!
 //! The binary (`src/main.rs`) is intentionally tiny — it just parses arguments
 //! and calls [`run`]. All the interesting logic lives here in the library so it
@@ -30,7 +30,7 @@ use crate::theme::Theme;
 
 /// Entry point for the application logic.
 ///
-/// Loads Perritabonita's remembered stats, dispatches on the chosen command,
+/// Loads Perrita Bonita's remembered stats, dispatches on the chosen command,
 /// and renders the result. Returns a [`Result`] so `main` can print any error
 /// nicely.
 pub fn run(cli: Cli) -> Result<()> {
@@ -39,7 +39,7 @@ pub fn run(cli: Cli) -> Result<()> {
     // No subcommand? Just show her.
     let command = cli.command.unwrap_or(Command::Show);
 
-    // Breathing room between the shell prompt and Perritabonita's output.
+    // Breathing room between the shell prompt and Perrita Bonita's output.
     println!();
 
     match command {
@@ -52,7 +52,7 @@ pub fn run(cli: Cli) -> Result<()> {
             let theme = Theme::for_mood(perritabonita.mood());
             println!(
                 "{}",
-                "You give Perritabonita a good pet. *thump thump thump*".color(theme.accent)
+                "You give Perrita Bonita a good pet. *thump thump thump*".color(theme.accent)
             );
             println!();
             show(&perritabonita)?;
@@ -63,7 +63,7 @@ pub fn run(cli: Cli) -> Result<()> {
             let theme = Theme::for_mood(perritabonita.mood());
             println!(
                 "{}",
-                "Perritabonita gobbles up the treat! *happy crunching*".color(theme.accent)
+                "Perrita Bonita gobbles up the treat! *happy crunching*".color(theme.accent)
             );
             println!();
             show(&perritabonita)?;
@@ -85,7 +85,7 @@ pub fn run(cli: Cli) -> Result<()> {
     Ok(())
 }
 
-/// Render Perritabonita saying something inside a speech bubble, above her
+/// Render Perrita Bonita saying something inside a speech bubble, above her
 /// portrait.
 fn say(perritabonita: &Perritabonita, text: &str) {
     let mood = perritabonita.mood();
@@ -96,7 +96,7 @@ fn say(perritabonita: &Perritabonita, text: &str) {
     println!("{}", art::portrait(mood).color(theme.art));
 }
 
-/// Show Perritabonita's portrait plus her mood.
+/// Show Perrita Bonita's portrait plus her mood.
 fn show(perritabonita: &Perritabonita) -> Result<()> {
     let mood = perritabonita.mood();
     let theme = Theme::for_mood(mood);
@@ -115,8 +115,8 @@ fn trick(perritabonita: &Perritabonita) -> Result<()> {
     let tricks = data::tricks()?;
     let theme = Theme::for_mood(perritabonita.mood());
     match speech::pick(&tricks) {
-        Some(t) => println!("{}", format!("Perritabonita {t}.").color(theme.accent)),
-        None => println!("Perritabonita doesn't know any tricks yet!"),
+        Some(t) => println!("{}", format!("Perrita Bonita {t}.").color(theme.accent)),
+        None => println!("Perrita Bonita doesn't know any tricks yet!"),
     }
     println!();
     println!("{}", art::portrait(perritabonita.mood()).color(theme.art));
@@ -129,7 +129,7 @@ fn fortune(perritabonita: &Perritabonita) -> Result<()> {
     let theme = Theme::for_mood(perritabonita.mood());
     match speech::pick(&fortunes) {
         Some(f) => println!("{}", format!("\u{1F4AD} {f}").color(theme.accent)),
-        None => println!("Perritabonita is out of wisdom for now."),
+        None => println!("Perrita Bonita is out of wisdom for now."),
     }
     println!();
     println!("{}", art::portrait(perritabonita.mood()).color(theme.art));

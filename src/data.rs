@@ -1,4 +1,4 @@
-//! Loading Perritabonita's data-driven content (tricks & fortunes) from TOML.
+//! Loading Perrita Bonita's data-driven content (tricks & fortunes) from TOML.
 //!
 //! Keeping this content in `assets/*.toml` means you can add new tricks or
 //! fortunes by editing a text file — no Rust changes, no recompiling the logic.
@@ -23,7 +23,7 @@ struct FortunesFile {
     fortunes: Vec<String>,
 }
 
-/// All of Perritabonita's tricks.
+/// All of Perrita Bonita's tricks.
 pub fn tricks() -> Result<Vec<String>> {
     // `toml::from_str` turns text into our typed struct; `?` converts a
     // `toml::de::Error` into `PerritabonitaError::Data`.
@@ -31,7 +31,7 @@ pub fn tricks() -> Result<Vec<String>> {
     Ok(parsed.tricks)
 }
 
-/// All of Perritabonita's fortunes.
+/// All of Perrita Bonita's fortunes.
 pub fn fortunes() -> Result<Vec<String>> {
     let parsed: FortunesFile = toml::from_str(FORTUNES_TOML)?;
     Ok(parsed.fortunes)

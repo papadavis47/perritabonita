@@ -1,4 +1,4 @@
-//! Loading Perritabonita's ASCII portraits.
+//! Loading Perrita Bonita's ASCII portraits.
 //!
 //! The art lives in `assets/art/*.txt`. We pull it in with `include_str!`, which
 //! reads the files *at compile time* and bakes them into the binary. That makes

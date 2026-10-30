@@ -1,4 +1,4 @@
-//! Perritabonita's persistent memory.
+//! Perrita Bonita's persistent memory.
 //!
 //! Her stats are stored as JSON in the platform config directory
 //! (e.g. `~/.config/perritabonita/state.json` on Linux) so she remembers you
@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::{PerritabonitaError, Result};
 
-/// Everything Perritabonita remembers about her life with you.
+/// Everything Perrita Bonita remembers about her life with you.
 ///
 /// `Serialize`/`Deserialize` are *derived*: serde writes the conversion code to
 /// and from JSON for us based on these fields.
@@ -43,22 +43,22 @@ impl Default for Stats {
 }
 
 impl Stats {
-    /// Load Perritabonita's stats from the default location, or return
+    /// Load Perrita Bonita's stats from the default location, or return
     /// fresh-puppy defaults if she has no memory yet.
     pub fn load() -> Result<Stats> {
         let path = default_path()?;
         Self::load_from(&path)
     }
 
-    /// Save Perritabonita's stats to the default location, creating directories
-    /// as needed.
+    /// Save Perrita Bonita's stats to the default location, creating
+    /// directories as needed.
     pub fn save(&self) -> Result<()> {
         let path = default_path()?;
         self.save_to(&path)
     }
 
     /// Load from a specific path. A missing file is *not* an error — it just
-    /// means this is Perritabonita's first day, so we hand back the defaults.
+    /// means this is Perrita Bonita's first day, so we hand back the defaults.
     pub fn load_from(path: &Path) -> Result<Stats> {
         match fs::read_to_string(path) {
             Ok(contents) => {
@@ -84,7 +84,7 @@ impl Stats {
     }
 }
 
-/// Where Perritabonita keeps her memories on this machine.
+/// Where Perrita Bonita keeps her memories on this machine.
 ///
 /// `dirs::config_dir()` returns an `Option` because some exotic environments
 /// have no config dir; we turn that `None` into a real error.

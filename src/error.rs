@@ -7,7 +7,7 @@
 use std::io;
 use thiserror::Error;
 
-/// Every way Perritabonita's world can go wrong.
+/// Every way Perrita Bonita's world can go wrong.
 ///
 /// The `#[from]` attributes tell `thiserror` to generate `From` implementations.
 /// Those `From` impls are what let the `?` operator convert, say, an
@@ -15,19 +15,20 @@ use thiserror::Error;
 #[derive(Debug, Error)]
 pub enum PerritabonitaError {
     /// Reading stdin or touching the filesystem failed.
-    #[error("Perritabonita had an I/O hiccup: {0}")]
+    #[error("Perrita Bonita had an I/O hiccup: {0}")]
     Io(#[from] io::Error),
 
-    /// Perritabonita's saved memory file couldn't be read or written as JSON.
-    #[error("Perritabonita's memory file is scrambled: {0}")]
+    /// Perrita Bonita's saved memory file couldn't be read or written as JSON.
+    #[error("Perrita Bonita's memory file is scrambled: {0}")]
     State(#[from] serde_json::Error),
 
     /// A bundled data file (tricks/fortunes) couldn't be parsed as TOML.
-    #[error("Perritabonita's data file couldn't be parsed: {0}")]
+    #[error("Perrita Bonita's data file couldn't be parsed: {0}")]
     Data(#[from] toml::de::Error),
 
-    /// We couldn't figure out where to store Perritabonita's memory on this OS.
-    #[error("Perritabonita couldn't find a home for her memories (no config dir)")]
+    /// We couldn't figure out where to store Perrita Bonita's memory on this
+    /// OS.
+    #[error("Perrita Bonita couldn't find a home for her memories (no config dir)")]
     NoConfigDir,
 }
 

@@ -1,4 +1,4 @@
-//! Mapping moods to colors, so Perritabonita *looks* how she feels.
+//! Mapping moods to colors, so Perrita Bonita *looks* how she feels.
 //!
 //! Keeping color choices here (instead of scattered through the logic) means
 //! the rest of the code never has to think about ANSI escapes.
@@ -7,7 +7,7 @@ use colored::Color;
 
 use crate::dog::Mood;
 
-/// A pair of colors used to render Perritabonita in a given mood.
+/// A pair of colors used to render Perrita Bonita in a given mood.
 #[derive(Debug, Clone, Copy)]
 pub struct Theme {
     /// Color for the ASCII art itself.

@@ -13,7 +13,7 @@ use perritabonita::state::Stats;
 #[test]
 fn a_full_day_with_perritabonita() {
     // Start from fresh-puppy defaults.
-    let mut perritabonita = Perritabonita::new("Perritabonita", Stats::default());
+    let mut perritabonita = Perritabonita::new("Perrita Bonita", Stats::default());
 
     // Petting several times should make her demonstrably happier.
     let happiness_before = perritabonita.stats.happiness;
@@ -33,7 +33,7 @@ fn a_full_day_with_perritabonita() {
 #[test]
 fn mood_reflects_extreme_stats() {
     let hungry = Perritabonita::new(
-        "Perritabonita",
+        "Perrita Bonita",
         Stats {
             hunger: 95,
             ..Stats::default()
@@ -42,7 +42,7 @@ fn mood_reflects_extreme_stats() {
     assert_eq!(hungry.mood(), Mood::Hungry);
 
     let sleepy = Perritabonita::new(
-        "Perritabonita",
+        "Perrita Bonita",
         Stats {
             energy: 10,
             hunger: 0,

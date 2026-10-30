@@ -24,7 +24,7 @@ clap = { version = "4", features = ["derive"] }
 
 # Serialization: serde is the trait layer, the others are format backends
 serde = { version = "1", features = ["derive"] }
-serde_json = "1"        # for Perritabonita's saved state
+serde_json = "1"        # for Perrita Bonita's saved state
 toml = "0.8"            # for human-editable data files (tricks, fortunes)
 
 # Randomness for picking tricks/fortunes

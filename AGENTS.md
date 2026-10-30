@@ -74,7 +74,7 @@ Common subcommands: `say "<text>"`, `pet`, `feed`, `trick`, `fortune`,
 
 ## Gotchas
 
-- Perritabonita's saved state lives at the OS config dir (e.g.
+- Perrita Bonita's saved state lives at the OS config dir (e.g.
   `~/.config/perritabonita/state.json`). Deleting it resets her to defaults.
   Avoid leaving demo state behind after manual runs; reset it if you created it.
 - Art files contain Unicode braille characters — edit them as UTF-8 and do not
@@ -108,11 +108,11 @@ Roughly easy → hard:
    `art::portrait` (or add a new `assets/art/*.txt` if it deserves its own).
 3. **Time decay** — store a "last interacted" timestamp in `Stats` and make
    hunger/energy drift over time (`SystemTime`, or the `time`/`chrono` crate).
-4. **Config file** — let users rename Perritabonita or pick a favorite color via
-   a TOML config loaded at startup.
+4. **Config file** — let users rename Perrita Bonita or pick a favorite color
+   via a TOML config loaded at startup.
 5. **`perritabonita play` mini-game** — a guessing/fetch game using `rand` and a
    loop.
-6. **Animation** — Perritabonita used to have a `show --animate` tail-wag
+6. **Animation** — Perrita Bonita used to have a `show --animate` tail-wag
    animation (`crossterm`); it was removed for lack of good small-scale art.
    Re-add it with new frame art if you want the exercise.
 7. **CLI polish** — shell completions via `clap_complete`.

@@ -1,12 +1,12 @@
 //! The star of the show: [`Perritabonita`] and her [`Mood`].
 //!
-//! This module is where we move from "a script" to "a model": Perritabonita is
+//! This module is where we move from "a script" to "a model": Perrita Bonita is
 //! a value that owns her state and exposes behavior through methods.
 
 use crate::error::Result;
 use crate::state::Stats;
 
-/// Perritabonita's current mood, derived from her stats.
+/// Perrita Bonita's current mood, derived from her stats.
 ///
 /// Deriving `Clone, Copy` lets us pass a `Mood` around by value cheaply (it's
 /// just a tag), and `PartialEq, Eq` lets us compare and `match` on it easily.
@@ -49,7 +49,7 @@ pub struct Perritabonita {
 }
 
 impl Perritabonita {
-    /// Build Perritabonita from an explicit set of stats.
+    /// Build Perrita Bonita from an explicit set of stats.
     pub fn new(name: impl Into<String>, stats: Stats) -> Self {
         Perritabonita {
             name: name.into(),
@@ -57,18 +57,18 @@ impl Perritabonita {
         }
     }
 
-    /// Load Perritabonita's remembered stats from disk (or fresh-puppy
+    /// Load Perrita Bonita's remembered stats from disk (or fresh-puppy
     /// defaults).
     pub fn load() -> Result<Self> {
-        Ok(Perritabonita::new("Perritabonita", Stats::load()?))
+        Ok(Perritabonita::new("Perrita Bonita", Stats::load()?))
     }
 
-    /// Persist Perritabonita's current stats to disk.
+    /// Persist Perrita Bonita's current stats to disk.
     pub fn save(&self) -> Result<()> {
         self.stats.save()
     }
 
-    /// Give Perritabonita a pet. Takes `&mut self` because it changes her
+    /// Give Perrita Bonita a pet. Takes `&mut self` because it changes her
     /// state: happier, a bit more awake, and she remembers it forever.
     pub fn pet(&mut self) {
         self.stats.times_petted = self.stats.times_petted.saturating_add(1);
@@ -76,7 +76,7 @@ impl Perritabonita {
         self.stats.energy = clamp_up(self.stats.energy, 3);
     }
 
-    /// Feed Perritabonita a treat: less hungry, happier, slightly more
+    /// Feed Perrita Bonita a treat: less hungry, happier, slightly more
     /// energetic.
     pub fn feed(&mut self) {
         self.stats.treats_eaten = self.stats.treats_eaten.saturating_add(1);
@@ -85,7 +85,7 @@ impl Perritabonita {
         self.stats.energy = clamp_up(self.stats.energy, 5);
     }
 
-    /// Derive Perritabonita's mood from her current stats.
+    /// Derive Perrita Bonita's mood from her current stats.
     ///
     /// Order matters: pressing needs (hunger, tiredness) win over general mood.
     pub fn mood(&self) -> Mood {
@@ -113,7 +113,7 @@ mod tests {
 
     fn perritabonita_with(happiness: u8, energy: u8, hunger: u8) -> Perritabonita {
         Perritabonita::new(
-            "Perritabonita",
+            "Perrita Bonita",
             Stats {
                 times_petted: 0,
                 treats_eaten: 0,

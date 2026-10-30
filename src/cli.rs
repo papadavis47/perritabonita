@@ -10,32 +10,32 @@ use clap::{Parser, Subcommand};
 #[derive(Debug, Parser)]
 #[command(name = "perritabonita", version, about, long_about = None)]
 pub struct Cli {
-    /// Which command to run. If omitted, Perritabonita just says hello.
+    /// Which command to run. If omitted, Perrita Bonita just says hello.
     #[command(subcommand)]
     pub command: Option<Command>,
 }
 
-/// Everything you can ask Perritabonita to do.
+/// Everything you can ask Perrita Bonita to do.
 ///
 /// Each variant is a subcommand; its fields become that subcommand's arguments.
 #[derive(Debug, Subcommand)]
 pub enum Command {
-    /// Have Perritabonita bark your words back at you.
+    /// Have Perrita Bonita bark your words back at you.
     Say {
         /// The words to bark (all trailing words are collected together).
         #[arg(trailing_var_arg = true)]
         words: Vec<String>,
     },
-    /// Give Perritabonita a pet. She'll remember it.
+    /// Give Perrita Bonita a pet. She'll remember it.
     Pet,
-    /// Feed Perritabonita a treat.
+    /// Feed Perrita Bonita a treat.
     Feed,
-    /// Ask Perritabonita to perform a random trick.
+    /// Ask Perrita Bonita to perform a random trick.
     Trick,
     /// Receive a piece of dog wisdom.
     Fortune,
-    /// Show Perritabonita in her current mood.
+    /// Show Perrita Bonita in her current mood.
     Show,
-    /// Print Perritabonita's current stats and mood.
+    /// Print Perrita Bonita's current stats and mood.
     Status,
 }

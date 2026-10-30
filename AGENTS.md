@@ -4,32 +4,33 @@ Guidance for AI coding agents working in this repository.
 
 ## Project overview
 
-`perritabonita` is a small Rust CLI: a virtual Golden Retriever companion for the
-terminal. It is primarily a **learning project**, so clarity and idiomatic,
+`perritabonita` is a small Rust CLI: a virtual Golden Retriever companion for
+the terminal. It is primarily a **learning project**, so clarity and idiomatic,
 well-explained code matter as much as functionality. Prefer straightforward,
 readable solutions over clever ones, and keep the teaching-oriented doc comments
 intact.
 
 It is structured as a **library + thin binary**:
 
-- `src/main.rs` — tiny entry point: parse args, call `perritabonita::run`, handle errors.
+- `src/main.rs` — tiny entry point: parse args, call `perritabonita::run`,
+  handle errors.
 - `src/lib.rs` — `run()` dispatch and rendering helpers; declares all modules.
 - All real logic lives in the library so it can be unit- and integration-tested.
 
 ## Module map
 
-| File                   | Responsibility                                           |
-| ---------------------- | -------------------------------------------------------- |
-| `src/cli.rs`           | `clap` command/argument definitions                      |
-| `src/dog.rs`           | `Perritabonita` struct + `Mood` enum (core model)                 |
-| `src/state.rs`         | Persistent stats via `serde_json` + filesystem           |
-| `src/data.rs`          | Load tricks/fortunes from bundled TOML                   |
-| `src/speech.rs`        | `barkify()`, speech bubbles, generic `pick()`            |
-| `src/art.rs`           | ASCII art (`include_str!`)                                |
-| `src/theme.rs`         | Mood → colors                                            |
-| `src/error.rs`         | Single crate-wide `PerritabonitaError` + `Result<T>` alias        |
-| `assets/`              | ASCII art `.txt` files + `tricks.toml` / `fortunes.toml` |
-| `tests/integration.rs` | Public-API integration tests                             |
+| File                   | Responsibility                                             |
+| ---------------------- | ---------------------------------------------------------- |
+| `src/cli.rs`           | `clap` command/argument definitions                        |
+| `src/dog.rs`           | `Perritabonita` struct + `Mood` enum (core model)          |
+| `src/state.rs`         | Persistent stats via `serde_json` + filesystem             |
+| `src/data.rs`          | Load tricks/fortunes from bundled TOML                     |
+| `src/speech.rs`        | `barkify()`, speech bubbles, generic `pick()`              |
+| `src/art.rs`           | ASCII art (`include_str!`)                                 |
+| `src/theme.rs`         | Mood → colors                                              |
+| `src/error.rs`         | Single crate-wide `PerritabonitaError` + `Result<T>` alias |
+| `assets/`              | ASCII art `.txt` files + `tricks.toml` / `fortunes.toml`   |
+| `tests/integration.rs` | Public-API integration tests                               |
 
 ## Commands
 
@@ -49,8 +50,8 @@ Common subcommands: `say "<text>"`, `pet`, `feed`, `trick`, `fortune`,
 
 - **Edition 2021.** Keep `rustc`/`cargo` at the toolchain already in use.
 - **Error handling:** never use `.unwrap()`/`.expect()` in library or binary
-  code paths (tests are fine). Return `crate::error::Result<T>` and use `?`.
-  Add new failure modes as variants on `PerritabonitaError`, using `#[from]` when
+  code paths (tests are fine). Return `crate::error::Result<T>` and use `?`. Add
+  new failure modes as variants on `PerritabonitaError`, using `#[from]` when
   wrapping a foreign error type.
 - **Exhaustive matches:** match on enums (e.g. `Mood`) directly rather than
   stringly-typed keys, so the compiler enforces coverage when variants change.
@@ -74,13 +75,13 @@ Common subcommands: `say "<text>"`, `pet`, `feed`, `trick`, `fortune`,
 ## Gotchas
 
 - Perritabonita's saved state lives at the OS config dir (e.g.
-  `~/.config/perritabonita/state.json`). Deleting it resets her to defaults. Avoid
-  leaving demo state behind after manual runs; reset it if you created it.
+  `~/.config/perritabonita/state.json`). Deleting it resets her to defaults.
+  Avoid leaving demo state behind after manual runs; reset it if you created it.
 - Art files contain Unicode braille characters — edit them as UTF-8 and do not
   "fix" the whitespace or blank-looking cells.
-- Only two portraits exist (`perritabonita_happy.txt`, `perritabonita_sleepy.txt`). `art::portrait`
-  maps every non-`Sleepy` mood to the happy pose; moods are told apart by
-  `theme.rs` colors, not separate art.
+- Only two portraits exist (`perritabonita_happy.txt`,
+  `perritabonita_sleepy.txt`). `art::portrait` maps every non-`Sleepy` mood to
+  the happy pose; moods are told apart by `theme.rs` colors, not separate art.
 
 ## Scope
 
@@ -107,12 +108,13 @@ Roughly easy → hard:
    `art::portrait` (or add a new `assets/art/*.txt` if it deserves its own).
 3. **Time decay** — store a "last interacted" timestamp in `Stats` and make
    hunger/energy drift over time (`SystemTime`, or the `time`/`chrono` crate).
-4. **Config file** — let users rename Perritabonita or pick a favorite color via a TOML
-   config loaded at startup.
-5. **`perritabonita play` mini-game** — a guessing/fetch game using `rand` and a loop.
-6. **Animation** — Perritabonita used to have a `show --animate` tail-wag animation
-   (`crossterm`); it was removed for lack of good small-scale art. Re-add it
-   with new frame art if you want the exercise.
+4. **Config file** — let users rename Perritabonita or pick a favorite color via
+   a TOML config loaded at startup.
+5. **`perritabonita play` mini-game** — a guessing/fetch game using `rand` and a
+   loop.
+6. **Animation** — Perritabonita used to have a `show --animate` tail-wag
+   animation (`crossterm`); it was removed for lack of good small-scale art.
+   Re-add it with new frame art if you want the exercise.
 7. **CLI polish** — shell completions via `clap_complete`.
 8. **Errors with context** — try `anyhow` in the binary layer and compare the
    ergonomics against the current `thiserror` setup.

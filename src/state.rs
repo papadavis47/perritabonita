@@ -43,14 +43,15 @@ impl Default for Stats {
 }
 
 impl Stats {
-    /// Load Perritabonita's stats from the default location, or return fresh-puppy
-    /// defaults if she has no memory yet.
+    /// Load Perritabonita's stats from the default location, or return
+    /// fresh-puppy defaults if she has no memory yet.
     pub fn load() -> Result<Stats> {
         let path = default_path()?;
         Self::load_from(&path)
     }
 
-    /// Save Perritabonita's stats to the default location, creating directories as needed.
+    /// Save Perritabonita's stats to the default location, creating directories
+    /// as needed.
     pub fn save(&self) -> Result<()> {
         let path = default_path()?;
         self.save_to(&path)
@@ -61,8 +62,9 @@ impl Stats {
     pub fn load_from(path: &Path) -> Result<Stats> {
         match fs::read_to_string(path) {
             Ok(contents) => {
-                // `?` here converts a `serde_json::Error` into `PerritabonitaError::State`
-                // via the `#[from]` we set up in `error.rs`.
+                // `?` here converts a `serde_json::Error` into
+                // `PerritabonitaError::State` via the `#[from]` we set up in
+                // `error.rs`.
                 let stats = serde_json::from_str(&contents)?;
                 Ok(stats)
             }

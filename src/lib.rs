@@ -30,8 +30,9 @@ use crate::theme::Theme;
 
 /// Entry point for the application logic.
 ///
-/// Loads Perritabonita's remembered stats, dispatches on the chosen command, and renders
-/// the result. Returns a [`Result`] so `main` can print any error nicely.
+/// Loads Perritabonita's remembered stats, dispatches on the chosen command,
+/// and renders the result. Returns a [`Result`] so `main` can print any error
+/// nicely.
 pub fn run(cli: Cli) -> Result<()> {
     let mut perritabonita = Perritabonita::load()?;
 
@@ -84,7 +85,8 @@ pub fn run(cli: Cli) -> Result<()> {
     Ok(())
 }
 
-/// Render Perritabonita saying something inside a speech bubble, above her portrait.
+/// Render Perritabonita saying something inside a speech bubble, above her
+/// portrait.
 fn say(perritabonita: &Perritabonita, text: &str) {
     let mood = perritabonita.mood();
     let theme = Theme::for_mood(mood);

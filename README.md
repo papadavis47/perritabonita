@@ -3,8 +3,8 @@
 A virtual Golden Retriever companion for your terminal — and a hands-on Rust
 learning project. Inspired by our beautiful, crazy dog. ❤️
 
-Perritabonita has **moods**, remembers you between runs (a tiny Tamagotchi), does
-**tricks**, and shares **dog wisdom**.
+Perritabonita has **moods**, remembers you between runs (a tiny Tamagotchi),
+does **tricks**, and shares **dog wisdom**.
 
 ## Quick start
 
@@ -14,7 +14,7 @@ cargo run -- <command>
 
 | Command                                 | What it does                                       |
 | --------------------------------------- | -------------------------------------------------- |
-| `perritabonita`                         | Show Perritabonita in her current mood (default)            |
+| `perritabonita`                         | Show Perritabonita in her current mood (default)   |
 | `perritabonita say "who's a good girl"` | Bark your words back in a speech bubble            |
 | `perritabonita pet`                     | Pet her — raises happiness, and she remembers it   |
 | `perritabonita feed`                    | Give her a treat — lowers hunger                   |
@@ -54,10 +54,10 @@ tests/
 ## Where to learn each Rust concept
 
 | Concept                                   | Look at                                                       |
-| --------------------------------------- | -------------------------------------------------- |
+| ----------------------------------------- | ------------------------------------------------------------- |
 | Library + binary split                    | `Cargo.toml`, `main.rs`, `lib.rs`                             |
 | Modules & visibility (`pub`)              | `lib.rs` module declarations                                  |
-| Structs & methods (`&self` / `&mut self`) | `dog.rs` (`Perritabonita`)                                             |
+| Structs & methods (`&self` / `&mut self`) | `dog.rs` (`Perritabonita`)                                    |
 | Enums & exhaustive `match`                | `dog.rs` (`Mood`), `art.rs`                                   |
 | Custom errors, `?`, `From` via `#[from]`  | `error.rs`, used everywhere                                   |
 | Traits via derive                         | `Serialize`/`Deserialize` in `state.rs`, `Parser` in `cli.rs` |
@@ -85,12 +85,13 @@ Ideas to keep learning, roughly easy → hard:
 2. **A new mood**: add `Mood::Playful`. The compiler will walk you through every
    `match` you must update — a great tour of exhaustiveness. Map it to an
    existing portrait in `art::portrait`, or add a new `assets/art/*.txt`.
-3. **Time decay**: store a "last interacted" timestamp in `Stats`; make Perritabonita get
-   hungrier/sleepier the longer since you last visited (learn `SystemTime`, and
-   the `chrono` or `time` crate).
-4. **Config file**: let users rename Perritabonita or pick a favorite color via a TOML
-   config loaded at startup.
-5. **`perritabonita play` mini-game**: a guessing or fetch game using `rand` and a loop.
+3. **Time decay**: store a "last interacted" timestamp in `Stats`; make
+   Perritabonita get hungrier/sleepier the longer since you last visited (learn
+   `SystemTime`, and the `chrono` or `time` crate).
+4. **Config file**: let users rename Perritabonita or pick a favorite color via
+   a TOML config loaded at startup.
+5. **`perritabonita play` mini-game**: a guessing or fetch game using `rand` and
+   a loop.
 6. **Animation**: a `show --animate` tail-wag animation (`crossterm`) used to
    exist and was removed for lack of good small-scale art. Re-add it with new
    frame art if you want the exercise.

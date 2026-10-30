@@ -1,7 +1,7 @@
 //! The star of the show: [`Perritabonita`] and her [`Mood`].
 //!
-//! This module is where we move from "a script" to "a model": Perritabonita is a value
-//! that owns her state and exposes behavior through methods.
+//! This module is where we move from "a script" to "a model": Perritabonita is
+//! a value that owns her state and exposes behavior through methods.
 
 use crate::error::Result;
 use crate::state::Stats;
@@ -57,7 +57,8 @@ impl Perritabonita {
         }
     }
 
-    /// Load Perritabonita's remembered stats from disk (or fresh-puppy defaults).
+    /// Load Perritabonita's remembered stats from disk (or fresh-puppy
+    /// defaults).
     pub fn load() -> Result<Self> {
         Ok(Perritabonita::new("Perritabonita", Stats::load()?))
     }
@@ -67,15 +68,16 @@ impl Perritabonita {
         self.stats.save()
     }
 
-    /// Give Perritabonita a pet. Takes `&mut self` because it changes her state:
-    /// happier, a bit more awake, and she remembers it forever.
+    /// Give Perritabonita a pet. Takes `&mut self` because it changes her
+    /// state: happier, a bit more awake, and she remembers it forever.
     pub fn pet(&mut self) {
         self.stats.times_petted = self.stats.times_petted.saturating_add(1);
         self.stats.happiness = clamp_up(self.stats.happiness, 10);
         self.stats.energy = clamp_up(self.stats.energy, 3);
     }
 
-    /// Feed Perritabonita a treat: less hungry, happier, slightly more energetic.
+    /// Feed Perritabonita a treat: less hungry, happier, slightly more
+    /// energetic.
     pub fn feed(&mut self) {
         self.stats.treats_eaten = self.stats.treats_eaten.saturating_add(1);
         self.stats.hunger = self.stats.hunger.saturating_sub(25);
